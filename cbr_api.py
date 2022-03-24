@@ -17,7 +17,7 @@ def update_xrates(from_currency, to_currency):
     xrate = XRate.select().where(XRate.from_currency == from_currency,
                                  XRate.to_currency == to_currency).first()
     log.debug("rate before: %s", xrate)
-    xrate.rate = get_privat_rate(from_currency)
+    xrate.rate = get_cbr_rate(from_currency)
     xrate.updated = peewee_datetime.datetime.now()
     xrate.save()
 
